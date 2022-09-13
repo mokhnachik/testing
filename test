@@ -1,17 +1,40 @@
-//тут будут написаны тесты всякие. .я думаю
-
-from main import division
+from main import number, division, word
 import pytest
 
-@pytest.mark.parametrize("a, b, expected_result", [(10, 2, 5),
-                                                   (20, 10, 2),
-                                                   (30, -3, -10),
-                                                   (5, 2, 2.5)])
-def test_division_good(a, b, expected_result):
-    assert division(a, b) == expected_result
+#для int
+def test_number_good_int():
+    assert number(1, 1) == 2
+@pytest.mark.parametrize("c, d, result_int", [(0, 0, 0),
+                                              (1, 0, 1),
+                                              (0, 1, 1),
+                                              (-1, 0, -1),
+                                              (0, -1, -1),
+                                              (1, -1, 0)])
+def test_number_good_int1(c, d, result_int):
+    assert number(c, d) == result_int
 
-@pytest.mark.parametrize("expected_exeption, divider, divisionable", [(ZeroDivisionError, 0, 10),
-                                                               (TypeError, "2", 20)])
-def test_division_whit_error(expected_exeption, divider, divisionable):
+#для float
+def test_division_good_float():
+    assert division(5, 2) == 2.5
+
+@pytest.mark.parametrize("a, b, result_float", [(2.5, 1, 2.5),
+                                                (2.5, -1, -2.5),
+                                                (2.5, 2.5, 1)])
+def test_division_good_float1(a, b, result_float):
+    assert division(a, b) == result_float
+@pytest.mark.parametrize("expected_exeption, a, b", [(TypeError, "1", 1),
+                                                     (TypeError, 2.5, "2.5")])
+def test_division_whit_error(expected_exeption, a, b):
     with pytest.raises(expected_exeption):
-        division(divisionable, divider)
+        division(a, b)
+
+#для string
+def test_word_good_str():
+    assert word("a", "a") == True
+@pytest.mark.parametrize("e, f, result_str", [("1", "1", True),
+                                              ("1", "0", False),
+                                              ("w", "w", True),
+                                              ("p", "w", False),
+                                              ("P", "W", False)])
+def test_word_good_str1(e, f, result_str):
+    assert word(e, f) == result_str
