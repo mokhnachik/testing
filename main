@@ -1,6 +1,13 @@
-print("Hellow world")
-//тут я предполагаю, что будет написано что-то, для чего надо будет тесты писать. ..функция какая-нибудь
+//функции, для которых писались тесты
 
+#для int - сложение
+def number(c, d):
+    return c + d
+
+#для float - деление
 def division(a, b):
     return a / b
-print(division(10, 5))
+
+#для string - сравнение литер
+def word(e, f):
+    return e == f
